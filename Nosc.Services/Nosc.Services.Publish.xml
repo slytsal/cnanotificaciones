@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<publishData>
+  <publishProfile publishUrl="C:\Users\ISAAC\Desktop\RESPALDO DE APP NOTIFICACIONES\ServicesNotificaciones" deleteExistingFiles="True" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Perfil1" publishMethod="FileSystem" replaceMatchingFiles="False" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
+    <file relUrl="Web.config" publishTime="03/19/2014 12:57:26" />
+    <file relUrl="bin/Nosc.Services.dll" publishTime="03/19/2014 15:58:33" />
+    <file relUrl="Services/Validacion.svc" publishTime="08/20/2013 15:30:33" />
+    <file relUrl="Services/Broadcast.svc" publishTime="08/20/2013 10:05:47" />
+    <file relUrl="bin/Nosc.Model.pdb" publishTime="03/19/2014 13:17:58" />
+    <file relUrl="Wapi.svc" publishTime="06/21/2013 17:05:44" />
+    <file relUrl="bin/Nosc.Services.pdb" publishTime="03/19/2014 15:58:33" />
+    <file relUrl="bin/Newtonsoft.Json.dll" publishTime="04/13/2012 10:00:28" />
+    <file relUrl="bin/Nosc.Services.Repository.dll" publishTime="03/19/2014 15:58:33" />
+    <file relUrl="Services/Receiver.svc" publishTime="08/20/2013 10:05:47" />
+    <file relUrl="Services/Notification.svc" publishTime="08/15/2013 17:23:47" />
+    <file relUrl="bin/Nosc.Services.Dal.pdb" publishTime="03/19/2014 12:52:27" />
+    <file relUrl="bin/Nosc.Model.dll" publishTime="03/19/2014 13:17:58" />
+    <file relUrl="bin/Nosc.Services.Dal.dll" publishTime="03/19/2014 12:52:27" />
+    <file relUrl="bin/Nosc.Services.Repository.pdb" publishTime="03/19/2014 15:58:32" />
+  </publishProfile>
+</publishData>

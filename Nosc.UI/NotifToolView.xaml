@@ -1,0 +1,47 @@
+﻿<UserControl xmlns:my="clr-namespace:Nosc.UI"  x:Class="Nosc.UI.NotifToolView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="20" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colours.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+                <ResourceDictionary Source="./Themes/DictionaryTheme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource=".\img\MainFondo.png" TileMode="Tile" 
+                             Stretch="Fill"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <!--<RowDefinition Height="30"/>-->
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <!--<Label Content="Centro de Notificaciones" HorizontalAlignment="Center"
+               Name="lblTitulo" VerticalAlignment="Bottom"
+               Style="{StaticResource labelTitulo}"/>-->
+        <Border  HorizontalAlignment="Center" VerticalAlignment="Center"
+                                Grid.Column="0">
+            <TextBlock Name="MinimizeButton" Text="1" VerticalAlignment="Bottom"
+                                   MouseLeftButtonUp="MinimizeButton_MouseLeftButtonUp"
+                                   ToolTip="Cambiar Panel" HorizontalAlignment="Center"
+                       FontFamily="Webdings" FontSize="15"/>
+        </Border>
+        <TextBlock HorizontalAlignment="Right" Margin="10,0" Grid.Column="1"
+                   Name="textBlockUserMail" Text="{Binding Usuario.UsuarioCorreo}"
+                   VerticalAlignment="Top" Style="{StaticResource TextBlockUserMail}" />
+        <Button Content="Button" Height="23" HorizontalAlignment="Left" Margin="-68,63,0,0" Name="button1" VerticalAlignment="Top" Width="75" />
+    </Grid>
+</UserControl>

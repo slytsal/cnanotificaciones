@@ -1,0 +1,576 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="NoscDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="NoscDBModelStoreContainer">
+          <EntitySet Name="APP_USUARIO" EntityType="NoscDBModel.Store.APP_USUARIO" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CAT_APP" EntityType="NoscDBModel.Store.CAT_APP" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CAT_SESION" EntityType="NoscDBModel.Store.CAT_SESION" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MODIFIEDDATA" EntityType="NoscDBModel.Store.MODIFIEDDATA" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Notificacion" EntityType="NoscDBModel.Store.Notificacion" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="NOTIFICACION_ACTIVA" EntityType="NoscDBModel.Store.NOTIFICACION_ACTIVA" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SYNCTABLE" EntityType="NoscDBModel.Store.SYNCTABLE" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="APP_USUARIO_CAT_SESION_FK1" Association="NoscDBModel.Store.APP_USUARIO_CAT_SESION_FK1">
+            <End Role="APP_USUARIO" EntitySet="APP_USUARIO" />
+            <End Role="CAT_SESION" EntitySet="CAT_SESION" />
+          </AssociationSet>
+          <AssociationSet Name="APP_USUARIO_Notificacion_FK1" Association="NoscDBModel.Store.APP_USUARIO_Notificacion_FK1">
+            <End Role="APP_USUARIO" EntitySet="APP_USUARIO" />
+            <End Role="Notificacion" EntitySet="Notificacion" />
+          </AssociationSet>
+          <AssociationSet Name="CAT_APP_Notificacion_FK1" Association="NoscDBModel.Store.CAT_APP_Notificacion_FK1">
+            <End Role="CAT_APP" EntitySet="CAT_APP" />
+            <End Role="Notificacion" EntitySet="Notificacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MODIFIEDD__IdSyn__0F975522" Association="NoscDBModel.Store.FK__MODIFIEDD__IdSyn__0F975522">
+            <End Role="SYNCTABLE" EntitySet="SYNCTABLE" />
+            <End Role="MODIFIEDDATA" EntitySet="MODIFIEDDATA" />
+          </AssociationSet>
+          <AssociationSet Name="Notificacion_NOTIFICACION_ACTIVA_FK1" Association="NoscDBModel.Store.Notificacion_NOTIFICACION_ACTIVA_FK1">
+            <End Role="Notificacion" EntitySet="Notificacion" />
+            <End Role="NOTIFICACION_ACTIVA" EntitySet="NOTIFICACION_ACTIVA" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="APP_USUARIO">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="bigint" Nullable="false" />
+          <Property Name="UsuarioCorreo" Type="nvarchar" MaxLength="250" />
+          <Property Name="UsuarioPwd" Type="nvarchar" MaxLength="20" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="250" />
+          <Property Name="Apellido" Type="nvarchar" MaxLength="250" />
+          <Property Name="Area" Type="nvarchar" MaxLength="250" />
+          <Property Name="Puesto" Type="nvarchar" MaxLength="250" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsModified" Type="bit" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="bigint" Nullable="false" />
+          <Property Name="ServerLastModifiedDate" Type="bigint" />
+          <Property Name="IsNewUser" Type="bit" Nullable="false" />
+          <Property Name="IsVerified" Type="bit" Nullable="false" />
+          <Property Name="IsMailSent" Type="bit" />
+        </EntityType>
+        <EntityType Name="CAT_APP">
+          <Key>
+            <PropertyRef Name="IdApp" />
+          </Key>
+          <Property Name="IdApp" Type="bigint" Nullable="false" />
+          <Property Name="AppName" Type="nvarchar" Nullable="false" MaxLength="254" />
+          <Property Name="AppIcon" Type="nvarchar" Nullable="false" MaxLength="254" />
+          <Property Name="IsModified" Type="bit" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="bigint" Nullable="false" />
+          <Property Name="ServerLastModifiedDate" Type="bigint" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CAT_SESION">
+          <Key>
+            <PropertyRef Name="IdSesion" />
+          </Key>
+          <Property Name="IdUsuario" Type="bigint" Nullable="false" />
+          <Property Name="IdSesion" Type="bigint" Nullable="false" />
+          <Property Name="IsSaveSesion" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MODIFIEDDATA">
+          <Key>
+            <PropertyRef Name="IdModifiedData" />
+          </Key>
+          <Property Name="IdModifiedData" Type="bigint" Nullable="false" />
+          <Property Name="IdSyncTable" Type="bigint" />
+          <Property Name="IsModified" Type="bit" />
+          <Property Name="ServerModifiedDate" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Notificacion">
+          <Key>
+            <PropertyRef Name="IdNotificacion" />
+          </Key>
+          <Property Name="IdNotificacion" Type="bigint" Nullable="false" />
+          <Property Name="FechaCreacion" Type="bigint" Nullable="false" />
+          <Property Name="Parametro" Type="nvarchar" Nullable="false" />
+          <Property Name="Mensaje" Type="nvarchar" Nullable="false" />
+          <Property Name="Titulo" Type="nvarchar" Nullable="false" MaxLength="1200" />
+          <Property Name="IdUsuario" Type="bigint" Nullable="false" />
+          <Property Name="IdApp" Type="bigint" Nullable="false" />
+          <Property Name="FechaNotificacion" Type="bigint" Nullable="false" />
+          <Property Name="IsCerrado" Type="bit" Nullable="false" />
+          <Property Name="FechaCerrado" Type="bigint" />
+          <Property Name="CanCerrar" Type="bit" Nullable="false" />
+          <Property Name="IsModified" Type="bit" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="bigint" Nullable="false" />
+          <Property Name="ServerLastModifiedDate" Type="bigint" />
+          <Property Name="Recurrencia" Type="int" Nullable="false" />
+          <Property Name="FechaUltimaMuestra" Type="bigint" Nullable="false" />
+          <Property Name="IsNotificacionActiva" Type="bit" Nullable="false" />
+          <Property Name="IsDescartarOnClick" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NOTIFICACION_ACTIVA">
+          <Key>
+            <PropertyRef Name="IdNotificacionActiva" />
+          </Key>
+          <Property Name="IdNotificacionActiva" Type="bigint" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IdNotificacion" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SYNCTABLE">
+          <Key>
+            <PropertyRef Name="IdSyncTable" />
+          </Key>
+          <Property Name="IdSyncTable" Type="bigint" Nullable="false" />
+          <Property Name="SyncTableName" Type="nvarchar(max)" />
+          <Property Name="OrderTable" Type="int" />
+        </EntityType>
+        <Association Name="APP_USUARIO_CAT_SESION_FK1">
+          <End Role="APP_USUARIO" Type="NoscDBModel.Store.APP_USUARIO" Multiplicity="1" />
+          <End Role="CAT_SESION" Type="NoscDBModel.Store.CAT_SESION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="APP_USUARIO">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="CAT_SESION">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="APP_USUARIO_Notificacion_FK1">
+          <End Role="APP_USUARIO" Type="NoscDBModel.Store.APP_USUARIO" Multiplicity="1" />
+          <End Role="Notificacion" Type="NoscDBModel.Store.Notificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="APP_USUARIO">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Notificacion">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CAT_APP_Notificacion_FK1">
+          <End Role="CAT_APP" Type="NoscDBModel.Store.CAT_APP" Multiplicity="1" />
+          <End Role="Notificacion" Type="NoscDBModel.Store.Notificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_APP">
+              <PropertyRef Name="IdApp" />
+            </Principal>
+            <Dependent Role="Notificacion">
+              <PropertyRef Name="IdApp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MODIFIEDD__IdSyn__0F975522">
+          <End Role="SYNCTABLE" Type="NoscDBModel.Store.SYNCTABLE" Multiplicity="0..1" />
+          <End Role="MODIFIEDDATA" Type="NoscDBModel.Store.MODIFIEDDATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYNCTABLE">
+              <PropertyRef Name="IdSyncTable" />
+            </Principal>
+            <Dependent Role="MODIFIEDDATA">
+              <PropertyRef Name="IdSyncTable" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Notificacion_NOTIFICACION_ACTIVA_FK1">
+          <End Role="Notificacion" Type="NoscDBModel.Store.Notificacion" Multiplicity="1" />
+          <End Role="NOTIFICACION_ACTIVA" Type="NoscDBModel.Store.NOTIFICACION_ACTIVA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Notificacion">
+              <PropertyRef Name="IdNotificacion" />
+            </Principal>
+            <Dependent Role="NOTIFICACION_ACTIVA">
+              <PropertyRef Name="IdNotificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="REPLACEChar" ReturnType="nvarchar(max)" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="campo" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SP_GetMax" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Tabla" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SP_GetTableNameModifiedData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="JsonTable" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SP_TABLE_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Tabla" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SP_UpdateModifiedDataLocal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nomTable" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="JsonTableModifiedData" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SpConfirmSincRows" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="JSON" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="nomTbl" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SpUpsertServerRows" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="nomTbl" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UDF_NewUnid" ReturnType="nvarchar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NoscDBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="NoscDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="APP_USUARIO" EntityType="NoscDBModel.APP_USUARIO" />
+          <EntitySet Name="CAT_SESION" EntityType="NoscDBModel.CAT_SESION" />
+          <AssociationSet Name="APP_USUARIO_CAT_SESION_FK1" Association="NoscDBModel.APP_USUARIO_CAT_SESION_FK1">
+            <End Role="APP_USUARIO" EntitySet="APP_USUARIO" />
+            <End Role="CAT_SESION" EntitySet="CAT_SESION" />
+          </AssociationSet>
+          <EntitySet Name="Notificacions" EntityType="NoscDBModel.Notificacion" />
+          <AssociationSet Name="APP_USUARIO_Notificacion_FK1" Association="NoscDBModel.APP_USUARIO_Notificacion_FK1">
+            <End Role="APP_USUARIO" EntitySet="APP_USUARIO" />
+            <End Role="Notificacion" EntitySet="Notificacions" />
+          </AssociationSet>
+          <EntitySet Name="CAT_APP" EntityType="NoscDBModel.CAT_APP" />
+          <AssociationSet Name="CAT_APP_Notificacion_FK1" Association="NoscDBModel.CAT_APP_Notificacion_FK1">
+            <End Role="CAT_APP" EntitySet="CAT_APP" />
+            <End Role="Notificacion" EntitySet="Notificacions" />
+          </AssociationSet>
+          <EntitySet Name="MODIFIEDDATA" EntityType="NoscDBModel.MODIFIEDDATA" />
+          <EntitySet Name="SYNCTABLE" EntityType="NoscDBModel.SYNCTABLE" />
+          <AssociationSet Name="FK__MODIFIEDD__IdSyn__1DE57479" Association="NoscDBModel.FK__MODIFIEDD__IdSyn__1DE57479">
+            <End Role="SYNCTABLE" EntitySet="SYNCTABLE" />
+            <End Role="MODIFIEDDATA" EntitySet="MODIFIEDDATA" />
+          </AssociationSet>
+          <FunctionImport Name="SP_GetMax" ReturnType="Collection(String)">
+          <Parameter Name="Tabla" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetTableNameModifiedData" ReturnType="Collection(String)">
+          <Parameter Name="JsonTable" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Upsert_Server_Rows" ReturnType="Collection(String)">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="nomTbl" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_UpdateModifiedDataLocal" ReturnType="Collection(String)">
+            <Parameter Name="nomTable" Mode="In" Type="String" />
+            <Parameter Name="JsonTableModifiedData" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_TABLE_JSON" ReturnType="Collection(String)">
+          <Parameter Name="Tabla" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SpConfirmSincRows" ReturnType="Collection(String)">
+            <Parameter Name="JSON" Mode="In" Type="String" />
+            <Parameter Name="nomTbl" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="NOTIFICACION_ACTIVA" EntityType="NoscDBModel.NOTIFICACION_ACTIVA" />
+          <AssociationSet Name="Notificacion_NOTIFICACION_ACTIVA_FK1" Association="NoscDBModel.Notificacion_NOTIFICACION_ACTIVA_FK1">
+            <End Role="Notificacion" EntitySet="Notificacions" />
+            <End Role="NOTIFICACION_ACTIVA" EntitySet="NOTIFICACION_ACTIVA" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="APP_USUARIO">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="Int64" Nullable="false" />
+          <Property Name="UsuarioCorreo" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="UsuarioPwd" Type="String" MaxLength="12" Unicode="true" FixedLength="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="Apellido" Type="String" Nullable="false" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="Area" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="Puesto" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsModified" Type="Boolean" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="Int64" Nullable="false" />
+          <Property Name="IsNewUser" Type="Boolean" Nullable="false" />
+          <Property Name="IsVerified" Type="Boolean" Nullable="false" />
+          <Property Name="IsMailSent" Type="Boolean" />
+          <NavigationProperty Name="CAT_SESION" Relationship="NoscDBModel.APP_USUARIO_CAT_SESION_FK1" FromRole="APP_USUARIO" ToRole="CAT_SESION" />
+          <Property Type="Int64" Name="ServerLastModifiedDate" />
+          <NavigationProperty Name="Notificacions" Relationship="NoscDBModel.APP_USUARIO_Notificacion_FK1" FromRole="APP_USUARIO" ToRole="Notificacion" />
+        </EntityType>
+        <EntityType Name="CAT_SESION">
+          <Key>
+            <PropertyRef Name="IdSesion" />
+          </Key>
+          <Property Type="Int64" Name="IdUsuario" Nullable="false" />
+          <Property Type="Int64" Name="IdSesion" Nullable="false" />
+          <Property Type="Boolean" Name="IsSaveSesion" Nullable="false" />
+          <NavigationProperty Name="APP_USUARIO" Relationship="NoscDBModel.APP_USUARIO_CAT_SESION_FK1" FromRole="CAT_SESION" ToRole="APP_USUARIO" />
+        </EntityType>
+        <Association Name="APP_USUARIO_CAT_SESION_FK1">
+          <End Type="NoscDBModel.APP_USUARIO" Role="APP_USUARIO" Multiplicity="1" />
+          <End Type="NoscDBModel.CAT_SESION" Role="CAT_SESION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="APP_USUARIO">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="CAT_SESION">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Notificacion">
+          <Key>
+            <PropertyRef Name="IdNotificacion" />
+          </Key>
+          <Property Type="Int64" Name="IdNotificacion" Nullable="false" />
+          <Property Type="Int64" Name="FechaCreacion" Nullable="false" />
+          <Property Type="String" Name="Parametro" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Mensaje" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Titulo" Nullable="false" MaxLength="1200" FixedLength="false" Unicode="true" />
+          <Property Type="Int64" Name="IdUsuario" Nullable="false" />
+          <Property Type="Int64" Name="IdApp" Nullable="false" />
+          <Property Type="Int64" Name="FechaNotificacion" Nullable="false" />
+          <Property Type="Boolean" Name="IsCerrado" Nullable="false" />
+          <Property Type="Int64" Name="FechaCerrado" />
+          <Property Type="Boolean" Name="CanCerrar" Nullable="false" />
+          <Property Type="Boolean" Name="IsModified" Nullable="false" />
+          <Property Type="Int64" Name="LastModifiedDate" Nullable="false" />
+          <Property Type="Int64" Name="ServerLastModifiedDate" />
+          <Property Type="Int32" Name="Recurrencia" Nullable="false" />
+          <Property Type="Int64" Name="FechaUltimaMuestra" Nullable="false" />
+          <Property Type="Boolean" Name="IsNotificacionActiva" Nullable="false" />
+          <Property Type="Boolean" Name="IsDescartarOnClick" Nullable="false" />
+          <NavigationProperty Name="APP_USUARIO" Relationship="NoscDBModel.APP_USUARIO_Notificacion_FK1" FromRole="Notificacion" ToRole="APP_USUARIO" />
+          <NavigationProperty Name="CAT_APP" Relationship="NoscDBModel.CAT_APP_Notificacion_FK1" FromRole="Notificacion" ToRole="CAT_APP" />
+          <NavigationProperty Name="NOTIFICACION_ACTIVA" Relationship="NoscDBModel.Notificacion_NOTIFICACION_ACTIVA_FK1" FromRole="Notificacion" ToRole="NOTIFICACION_ACTIVA" />
+        </EntityType>
+        <Association Name="APP_USUARIO_Notificacion_FK1">
+          <End Type="NoscDBModel.APP_USUARIO" Role="APP_USUARIO" Multiplicity="1" />
+          <End Type="NoscDBModel.Notificacion" Role="Notificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="APP_USUARIO">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Notificacion">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CAT_APP">
+          <Key>
+            <PropertyRef Name="IdApp" />
+          </Key>
+          <Property Type="Int64" Name="IdApp" Nullable="false" />
+          <Property Type="String" Name="AppName" Nullable="false" MaxLength="254" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AppIcon" Nullable="false" MaxLength="254" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsModified" Nullable="false" />
+          <Property Type="Int64" Name="LastModifiedDate" Nullable="false" />
+          <Property Type="Int64" Name="ServerLastModifiedDate" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <NavigationProperty Name="Notificacions" Relationship="NoscDBModel.CAT_APP_Notificacion_FK1" FromRole="CAT_APP" ToRole="Notificacion" />
+        </EntityType>
+        <Association Name="CAT_APP_Notificacion_FK1">
+          <End Type="NoscDBModel.CAT_APP" Role="CAT_APP" Multiplicity="1" />
+          <End Type="NoscDBModel.Notificacion" Role="Notificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_APP">
+              <PropertyRef Name="IdApp" />
+            </Principal>
+            <Dependent Role="Notificacion">
+              <PropertyRef Name="IdApp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="MODIFIEDDATA">
+          <Key>
+            <PropertyRef Name="IdModifiedData" />
+          </Key>
+          <Property Type="Int64" Name="IdModifiedData" Nullable="false" />
+          <Property Type="Int64" Name="IdSyncTable" />
+          <Property Type="Boolean" Name="IsModified" />
+          <Property Type="Int64" Name="ServerModifiedDate" />
+          <NavigationProperty Name="SYNCTABLE" Relationship="NoscDBModel.FK__MODIFIEDD__IdSyn__1DE57479" FromRole="MODIFIEDDATA" ToRole="SYNCTABLE" />
+        </EntityType>
+        <EntityType Name="SYNCTABLE">
+          <Key>
+            <PropertyRef Name="IdSyncTable" />
+          </Key>
+          <Property Type="Int64" Name="IdSyncTable" Nullable="false" />
+          <Property Type="String" Name="SyncTableName" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="OrderTable" />
+          <NavigationProperty Name="MODIFIEDDATA" Relationship="NoscDBModel.FK__MODIFIEDD__IdSyn__1DE57479" FromRole="SYNCTABLE" ToRole="MODIFIEDDATA" />
+        </EntityType>
+        <Association Name="FK__MODIFIEDD__IdSyn__1DE57479">
+          <End Type="NoscDBModel.SYNCTABLE" Role="SYNCTABLE" Multiplicity="0..1" />
+          <End Type="NoscDBModel.MODIFIEDDATA" Role="MODIFIEDDATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYNCTABLE">
+              <PropertyRef Name="IdSyncTable" />
+            </Principal>
+            <Dependent Role="MODIFIEDDATA">
+              <PropertyRef Name="IdSyncTable" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="NOTIFICACION_ACTIVA">
+          <Key>
+            <PropertyRef Name="IdNotificacionActiva" />
+          </Key>
+          <Property Type="Int64" Name="IdNotificacionActiva" Nullable="false" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <Property Type="Int64" Name="IdNotificacion" Nullable="false" />
+          <NavigationProperty Name="Notificacion" Relationship="NoscDBModel.Notificacion_NOTIFICACION_ACTIVA_FK1" FromRole="NOTIFICACION_ACTIVA" ToRole="Notificacion" />
+        </EntityType>
+        <Association Name="Notificacion_NOTIFICACION_ACTIVA_FK1">
+          <End Type="NoscDBModel.Notificacion" Role="Notificacion" Multiplicity="1" />
+          <End Type="NoscDBModel.NOTIFICACION_ACTIVA" Role="NOTIFICACION_ACTIVA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Notificacion">
+              <PropertyRef Name="IdNotificacion" />
+            </Principal>
+            <Dependent Role="NOTIFICACION_ACTIVA">
+              <PropertyRef Name="IdNotificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NoscDBModelStoreContainer" CdmEntityContainer="NoscDBEntities">
+          <EntitySetMapping Name="APP_USUARIO"><EntityTypeMapping TypeName="NoscDBModel.APP_USUARIO"><MappingFragment StoreEntitySet="APP_USUARIO">
+            <ScalarProperty Name="ServerLastModifiedDate" ColumnName="ServerLastModifiedDate" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+            <ScalarProperty Name="UsuarioCorreo" ColumnName="UsuarioCorreo" />
+            <ScalarProperty Name="UsuarioPwd" ColumnName="UsuarioPwd" />
+            <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+            <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+            <ScalarProperty Name="Area" ColumnName="Area" />
+            <ScalarProperty Name="Puesto" ColumnName="Puesto" />
+            <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+            <ScalarProperty Name="IsModified" ColumnName="IsModified" />
+            <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+            <ScalarProperty Name="IsNewUser" ColumnName="IsNewUser" />
+            <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
+            <ScalarProperty Name="IsMailSent" ColumnName="IsMailSent" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="CAT_SESION">
+            <EntityTypeMapping TypeName="NoscDBModel.CAT_SESION">
+              <MappingFragment StoreEntitySet="CAT_SESION">
+                <ScalarProperty Name="IsSaveSesion" ColumnName="IsSaveSesion" />
+                <ScalarProperty Name="IdSesion" ColumnName="IdSesion" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notificacions">
+            <EntityTypeMapping TypeName="NoscDBModel.Notificacion">
+              <MappingFragment StoreEntitySet="Notificacion">
+                <ScalarProperty Name="IsDescartarOnClick" ColumnName="IsDescartarOnClick" />
+                <ScalarProperty Name="IsNotificacionActiva" ColumnName="IsNotificacionActiva" />
+                <ScalarProperty Name="FechaUltimaMuestra" ColumnName="FechaUltimaMuestra" />
+                <ScalarProperty Name="Recurrencia" ColumnName="Recurrencia" />
+                <ScalarProperty Name="ServerLastModifiedDate" ColumnName="ServerLastModifiedDate" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="IsModified" ColumnName="IsModified" />
+                <ScalarProperty Name="CanCerrar" ColumnName="CanCerrar" />
+                <ScalarProperty Name="FechaCerrado" ColumnName="FechaCerrado" />
+                <ScalarProperty Name="IsCerrado" ColumnName="IsCerrado" />
+                <ScalarProperty Name="FechaNotificacion" ColumnName="FechaNotificacion" />
+                <ScalarProperty Name="IdApp" ColumnName="IdApp" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Mensaje" ColumnName="Mensaje" />
+                <ScalarProperty Name="Parametro" ColumnName="Parametro" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="IdNotificacion" ColumnName="IdNotificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CAT_APP">
+            <EntityTypeMapping TypeName="NoscDBModel.CAT_APP">
+              <MappingFragment StoreEntitySet="CAT_APP">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ServerLastModifiedDate" ColumnName="ServerLastModifiedDate" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="IsModified" ColumnName="IsModified" />
+                <ScalarProperty Name="AppIcon" ColumnName="AppIcon" />
+                <ScalarProperty Name="AppName" ColumnName="AppName" />
+                <ScalarProperty Name="IdApp" ColumnName="IdApp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MODIFIEDDATA">
+            <EntityTypeMapping TypeName="NoscDBModel.MODIFIEDDATA">
+              <MappingFragment StoreEntitySet="MODIFIEDDATA">
+                <ScalarProperty Name="ServerModifiedDate" ColumnName="ServerModifiedDate" />
+                <ScalarProperty Name="IsModified" ColumnName="IsModified" />
+                <ScalarProperty Name="IdSyncTable" ColumnName="IdSyncTable" />
+                <ScalarProperty Name="IdModifiedData" ColumnName="IdModifiedData" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYNCTABLE">
+            <EntityTypeMapping TypeName="NoscDBModel.SYNCTABLE">
+              <MappingFragment StoreEntitySet="SYNCTABLE">
+                <ScalarProperty Name="OrderTable" ColumnName="OrderTable" />
+                <ScalarProperty Name="SyncTableName" ColumnName="SyncTableName" />
+                <ScalarProperty Name="IdSyncTable" ColumnName="IdSyncTable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetMax" FunctionName="NoscDBModel.Store.SP_GetMax" />
+          <FunctionImportMapping FunctionImportName="SP_GetTableNameModifiedData" FunctionName="NoscDBModel.Store.SP_GetTableNameModifiedData" />
+          <FunctionImportMapping FunctionImportName="SP_Upsert_Server_Rows" FunctionName="NoscDBModel.Store.SpUpsertServerRows" />
+          <FunctionImportMapping FunctionImportName="SP_UpdateModifiedDataLocal" FunctionName="NoscDBModel.Store.SP_UpdateModifiedDataLocal" />
+          <FunctionImportMapping FunctionImportName="SP_TABLE_JSON" FunctionName="NoscDBModel.Store.SP_TABLE_JSON" />
+          <FunctionImportMapping FunctionImportName="SpConfirmSincRows" FunctionName="NoscDBModel.Store.SpConfirmSincRows" />
+          <EntitySetMapping Name="NOTIFICACION_ACTIVA">
+            <EntityTypeMapping TypeName="NoscDBModel.NOTIFICACION_ACTIVA">
+              <MappingFragment StoreEntitySet="NOTIFICACION_ACTIVA">
+                <ScalarProperty Name="IdNotificacion" ColumnName="IdNotificacion" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IdNotificacionActiva" ColumnName="IdNotificacionActiva" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="NoscEF" ZoomLevel="95">
+        <EntityTypeShape EntityType="NoscDBModel.APP_USUARIO" Width="1.5" PointX="0.75" PointY="1" Height="3.7109993489583331" IsExpanded="true" />
+        <EntityTypeShape EntityType="NoscDBModel.CAT_SESION" Width="1.5" PointX="3" PointY="6" Height="1.7879850260416657" />
+        <AssociationConnector Association="NoscDBModel.APP_USUARIO_CAT_SESION_FK1" >
+          <ConnectorPoint PointX="1.5" PointY="5.0956022135416656" />
+          <ConnectorPoint PointX="1.5" PointY="6.8939925130208328" />
+          <ConnectorPoint PointX="3" PointY="6.8939925130208328" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="NoscDBModel.Notificacion" Width="1.5" PointX="3" PointY="0.75" Height="4.8648079427083317" />
+        <AssociationConnector Association="NoscDBModel.APP_USUARIO_Notificacion_FK1" >
+          <ConnectorPoint PointX="2.25" PointY="3.0478011067708328" />
+          <ConnectorPoint PointX="3" PointY="3.0478011067708328" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="NoscDBModel.CAT_APP" Width="1.5" PointX="5.375" PointY="1" Height="2.5571907552083317" />
+        <AssociationConnector Association="NoscDBModel.CAT_APP_Notificacion_FK1" >
+          <ConnectorPoint PointX="5.375" PointY="2.2785953776041659" />
+          <ConnectorPoint PointX="4.5" PointY="2.2785953776041659" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="NoscDBModel.MODIFIEDDATA" Width="1.5" PointX="7.625" PointY="4.875" Height="1.9802864583333335" />
+        <EntityTypeShape EntityType="NoscDBModel.SYNCTABLE" Width="1.5" PointX="5.375" PointY="5" Height="1.7879850260416674" />
+        <AssociationConnector Association="NoscDBModel.FK__MODIFIEDD__IdSyn__1DE57479" >
+          <ConnectorPoint PointX="6.875" PointY="5.8939925130208337" />
+          <ConnectorPoint PointX="7.625" PointY="5.8939925130208337" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="NoscDBModel.NOTIFICACION_ACTIVA" Width="1.5" PointX="5.25" PointY="8.375" Height="1.7879850260416674" />
+        <AssociationConnector Association="NoscDBModel.Notificacion_NOTIFICACION_ACTIVA_FK1" >
+          <ConnectorPoint PointX="4.5" PointY="4.2785953776041659" />
+          <ConnectorPoint PointX="5.28125" PointY="4.2785953776041659" />
+          <ConnectorPoint PointX="5.28125" PointY="8.375" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
